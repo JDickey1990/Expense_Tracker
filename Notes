@@ -1,0 +1,22 @@
+JSX 
+
+JSX  is using  a React object that it has access to when you 
+import React from 'react'
+
+And then essentially your return block written in JSX is passed the React object and the .createElement() is called.
+
+Return React.createElement(
+	'div',
+	{},
+	React.createElement('h2', {}, "Let's get started"),
+    React.createElement(Expenses, {items:expenses}
+);
+
+would be the JSX under the hood look for this code
+
+return (
+    <div>
+        <h2>Let's get started</h2>
+        <Expenses items={expenses}
+    </div>
+);
