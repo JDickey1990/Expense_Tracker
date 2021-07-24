@@ -6,7 +6,7 @@ import Card from "../UI/Card";
 import "./Expenses.css";
 
 const Expenses = ({ expenses }) => {
-  const [expenseYear, setExpenseYear] = useState("All");
+  const [expenseYear, setExpenseYear] = useState("2021");
 
   const filteredExpenses = expenses.filter((expense) => {
     return expense.date.getFullYear().toString() === expenseYear;
@@ -27,6 +27,12 @@ const Expenses = ({ expenses }) => {
     setExpenseYear(expenseYearData);
   };
 
+  let expensesContent = <p>No expenses found</p>;
+
+  if(filteredExpenses.length > 0){
+      expensesContent = expenseItem(filteredExpenses);
+  }
+
   return (
     <div>
       <Card className="expenses">
@@ -34,7 +40,7 @@ const Expenses = ({ expenses }) => {
           selected={expenseYear}
           onExpenseFilterYear={expenseFilterYear}
         />
-        {expenseItem(filteredExpenses)}
+        {expensesContent}
       </Card>
     </div>
   );
